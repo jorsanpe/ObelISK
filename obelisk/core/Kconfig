@@ -1,0 +1,50 @@
+menu "Object Pools"
+config MAX_TASKS
+	int "Task Pool Size"
+	default 5
+	help
+		Maximum number of tasks allocatable
+config MAX_SEM
+	int "Semaphore Pool Size"
+	default 1
+	help
+		Maximum number of semaphores allocatable
+config MAX_EVENT
+	int "Eventflag Pool size"
+	default 1
+	help
+		Maximum number of eventflags allocatable
+config MAX_MAILBOX
+	int "Mailbox Pool size"
+	default 1
+	help
+		Maximum number of mailboxes allocatable
+config MAX_MAILBOX_MSG
+	int "Mailbox Messages Pool size"
+	default 128
+	help
+		Maximum number of mailbox messages
+config MAX_FMPOOL
+	int "Fixed-Size Memory Pools"
+	default 0
+	help
+		Maximum number of memory pools serving fixed-size blocks on the system
+config MAX_VMPOOL
+	int "Variable-Size Memory Pools"
+	default 4
+	help
+		Maximum number of memory pools serving variable-size blocks on the system
+endmenu
+config SYSLOG_ACTIVE
+	bool "Activate System Log"
+	default y
+if SYSLOG_ACTIVE
+config SYSLOG_SIZE
+	int "System Log size"
+	default 128
+endif
+config KSTACK_SIZE
+	int "Task Kernel Stack Area Size"
+	default 1024
+	help
+		Each task has a stack area for kernel use

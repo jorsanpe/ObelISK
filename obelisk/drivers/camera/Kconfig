@@ -1,0 +1,21 @@
+choice
+	prompt "Camera Chipset"
+	default OV7660
+config OV7660
+	bool "Omnivision OV7660 Camera Driver"
+	help
+		Compile OV7660 camera driver
+endchoice
+choice
+	prompt "Camera Mode"
+	default OV7660_CCIR656_VGA_YUV_15FPS
+config OV7660_CCIR656_VGA_YUV_15FPS
+	bool "VGA 640x480, YUV, 15 FPS"
+	help
+		Using CCIR656
+config OV7660_CCIR656_QVGA_YUV_15FPS
+	bool "QVGA 320x240, YUV, 15 FPS"
+	help
+		Using CCIR656
+endchoice
+	

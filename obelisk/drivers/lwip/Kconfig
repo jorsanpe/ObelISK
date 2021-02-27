@@ -1,0 +1,44 @@
+config USING_LWIP
+	bool "Enable lwIP TCP/IP Stack"
+	default 0
+	
+if USING_LWIP
+
+choice
+	prompt "lwIP Features"
+	default LWIP_SOCKET_API
+config LWIP_MINIMAL_FEATURES
+	bool "Minimal Features"
+config LWIP_SEQUENTIAL_API
+	bool "Sequential API"
+config LWIP_SOCKET_API
+	bool "Socket API"
+endchoice
+
+config ETHIF_PRIO
+	int "Ethernet Thread Piority"
+	default 5
+
+menu "Configure Network"
+config USE_DHCP
+	bool "Activate DHCP"
+	default 0
+	
+if !USE_DHCP
+config IP_ADDRESS
+	string "IP Address"
+	default "192.168.1.1"
+config NETMASK
+	string "Network Mask"
+	default "255.255.255.0"
+config GATEWAY
+	string "Default Gateway"
+	default "192.168.1.0"
+config MAC_ADDRESS
+	string "MAC Address"
+	default "EE:FF:C0:A8:01:01"
+endif
+
+endmenu
+
+endif

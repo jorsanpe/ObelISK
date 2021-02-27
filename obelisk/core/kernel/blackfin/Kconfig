@@ -1,0 +1,44 @@
+#
+# Plug and Play configuration
+#
+
+choice 
+	prompt "Blackfin CPU"
+	default CPU_BF548
+config CPU_BF548
+	bool "BF548"
+	help 
+		At this point this is the only CPU supported
+endchoice
+config CLKIN
+	int "Clock Input Frequency (Hz)"
+	default 25000000
+config CCLK
+	int "Core Clock Frequency (Hz)"
+	default 500000000
+config SCLK
+	int "System Clock Frequency (Hz)"
+	default 125000000
+config CTMR
+	int "Core Timer Period (us)"
+	default 1000
+config RAM_SIZE
+	int "External Memory Size (MB)"
+	default 64
+config BFIN_ICACHE
+	bool "Enable Instruction Cache"
+config BFIN_DCACHE
+	bool "Enable Data Cache Bank A"
+if BFIN_DCACHE
+config BFIN_DCACHEB
+	bool "Enable Data Cache Bank B"
+choice
+	prompt "Caching Method"
+	default BFIN_WT
+config BFIN_WT
+	bool "Write Through"
+config BFIN_WB
+	bool "Write Back"
+endchoice
+endif
+	

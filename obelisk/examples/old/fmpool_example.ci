@@ -1,0 +1,82 @@
+/*
+ * $FILE: fmpool_example.c
+ *
+ * (INCOMPLETE) Fixed-size memory pool example.
+ *
+ * Author: Jordi Sánchez <jorsanp3@upvnet.upv.es>
+ *
+ */
+
+#include "itron.h"
+#include "processor.h"
+
+enum {
+   SYSTEM_POOL,
+   USER_POOL1
+};
+
+enum {
+   FMPOOL1=0
+};
+
+typedef struct dummy_struct {
+   int field1;
+   short field2;
+   char field3[10];
+} dummy_t;
+
+void task1(void)
+{
+   int i;
+   T_MSG *msg;
+
+   // Allocate shared memory for the mailbox
+   get_mpl(USER_POOL1, sizeof(T_MSG), &msg);
+   msg->msgdat = &mailbox_data;
+
+   for (i=0; i<50; i++) {
+      tslp_tsk(500);
+      snd_mbx(MAILBOX, msg);
+   }
+
+   rel_mpl(USER_POOL1, msg);
+   ext_tsk();
+}
+
+void task2(void)
+{
+   int i;
+   T_MSG *msg;
+
+   // Allocate shared memory for the mailbox
+   get_mpl(USER_POOL1, sizeof(T_MSG), &msg);
+
+   for (i=0; i<50; i++) {
+      rcv_mbx(MAILBOX, &msg);
+      bfin_write_PORTH(bfin_read_PORTH() ^ PH5);
+   }
+
+   rel_mpl(USER_POOL1, msg);
+   ext_tsk();
+}
+
+int main(void)
+{
+   T_CMPF *pk_cmpf;
+   dummy_t *pdummy[12];
+
+   get_mpl(SYSTEM_POOL, sizeof(T_CMPF), &pk_cmpf);
+   pk_cmpf->blkcnt = 10;
+   pk_cmpf->blksz = sizeof(dummy_t);
+   get_mpl(USER_POOL1, (pk_cmpf->blkcnt*pk_cmpf->blksz) + (pk_cmpf->blkcnt)>>3, &pk_cmpf->mpf);
+
+   cre_mpf(FMPOOL1, pk_cmpf);
+   get_mpf(FMPOOL1, pdummy[0]);
+
+   // Release memory
+   rel_mpl(SYSTEM_POOL, pk_cmpf);
+
+   ext_tsk();
+}
+
+

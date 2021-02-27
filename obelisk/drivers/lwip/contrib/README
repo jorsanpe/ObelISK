@@ -1,0 +1,10 @@
+-----------------------
+lwIP PORTING TO ObelISK
+-----------------------
+
+This is a system architecture wrapper for lwIP use under
+ObelISK kernel. Driver implemented is for a SMSC LAN9218
+Ethernet device. Only one Ethernet interface is
+supported.
+
+     

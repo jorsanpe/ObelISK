@@ -1,0 +1,14 @@
+#
+# Flash Boot Configuration
+#
+
+config FLASH_SIZE
+	int "Flash Memory Size (B)"
+	default 8000000
+config FLASH_START_ADDRESS
+	hex "Flash Start Address"
+	default 0x20000000
+config APPLICATION_OFFSET
+	hex "Applications on flash start address"
+	default 0x1000
+	

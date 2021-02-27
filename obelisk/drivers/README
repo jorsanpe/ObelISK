@@ -1,0 +1,76 @@
+--------------------------------------
+     ObelISK Device Driver Model
+--------------------------------------
+
+  The ObelISK Device Driver engine has the next structure:
+    ____________________
+   |                    |
+   |  USER APPLICATION  |
+   |____________________|
+   |                    |
+   |  INTERFACE LAYER   |   Additional layers may be included at
+   |____________________|   user level
+    _________|__________
+   |                    |
+   |       KERNEL       |
+   |____________________|
+   |                    |
+   |   DRIVERS ENGINE   |   core/kernel/port/device.c
+   |____________________|
+    _________|__________
+   |                    |
+   |   LOGICAL LAYER    |   drivers/logical
+   |____________________|
+   |                    |
+   |   PHYSICAL LAYER   |   drivers/physical
+   |____________________|
+	
+	
+---------------------------------------
+    Device Driver Engine
+---------------------------------------
+
+  The Device Driver Engine is the responsible for taking the user
+calls and transporting them to the correct driver. It manages the
+opened devices and associates each open instance with a device
+descriptor and a task ID. Thus, only the task owning the specific
+instance of the driver can make use of it.
+
+---------------------------------------
+	Device Driver Logical Layer
+---------------------------------------
+
+  The Logical Layer is the high level layer of the devices. This
+layer does not manage directly the device. Instead, its purpose is
+to give an interface to a specific type of device. For example, the
+camera is the interface of a camera device, but does not manage any
+specific camera. 
+
+  The Logical Layer of a driver is managed through the functions
+at struct device_ops {}. This layer takes requests of transfers from
+the user and queues them. When the driver is ready to process a new
+request, the logical layer processes by sending the relevant commands
+to the physical layer.
+
+  The device_ops of these layer include a callback function to manage
+internal interrupts. Most of the time, this interrupts will be DMA
+related interrupts, which will be installed to notify the system of
+requests having ended its processing. The callback may not be installed
+which would mean that this driver polls for its input / output. 
+
+---------------------------------------
+	Device Driver Physical Layer
+---------------------------------------
+
+  The Physical Layer is the layer that directly acts on the hardware.
+Like the logical layer, this one has a standard interface in order
+to encapsulate the management and allow easier driver development. The
+hardware interface is also defined in core/include/device.h.
+
+  This layer is responsible of device interrupt handling. To this end,
+the hardware device operations interface has a reference to a callback
+that must be provided in the case that the device needs make use of 
+interrupts.
+
+
+ 

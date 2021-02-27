@@ -1,0 +1,7 @@
+# FILE            NAME
+bootloader.bin "bootloader"
+semaphore_example.dxe "main"
+flash.o "flash driver"
+
+
+

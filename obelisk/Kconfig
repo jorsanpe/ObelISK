@@ -1,0 +1,30 @@
+# ObelISK configuration
+
+mainmenu "ObelISK Configuration Tool"
+
+choice
+	prompt "Architecture"
+	default ARCH_BLACKFIN
+config ARCH_BLACKFIN
+	bool "Blackfin Architecture"
+	help
+		Choose this to run ObelISK on a Blackfin DSP
+endchoice
+
+# architecture specific devices
+if ARCH_BLACKFIN
+menu "Architecture specific"
+source "core/kernel/blackfin/Kconfig"
+endmenu
+menu "Boot Loader"
+source "user/bootloader/Kconfig"
+endmenu
+endif
+
+menu "ObelISK core configuration"
+source "core/Kconfig"
+endmenu
+
+menu "Device Drivers"
+source "drivers/Kconfig"
+endmenu

@@ -1,0 +1,26 @@
+-------------
+PENDING TASKS
+-------------
+
+Accept TA_PRI on several service calls          | - 10%
+Implementation of the ITRON Standard Profile    | --------- 90%
+Provide support for 256 range ID numbers        | 0%
+Exception Handling                              | -------- 80%
+CPLB Exception handler fix                      | --- 30%
+ITRON API from interrupts                       | ---------- done
+ITRON Devices from T-Engine                     | -- 20%
+Integration of the TCP/IP Stack                 | -------- 90%
+Unitary Tests                                   | ------- 80%
+Static Profile                                  | 0%
+Kernel Configuration utility                    | ---------- done
+autoconf.h integration                          | ---------- done
+External memory SDRAM                           | ---------- done
+Cache memory                                    | --------- 90%
+Makefiles fix                                   | --------- 90%
+Generic LDS                                     | ---------- done
+User Libc                                       | --------- 90%
+Graphical Log Visor                             | ------- 70%
+Web Page                                        | ------ 60%
+Bootloader                                      | -------- 80%
+lwIP header fix for user level usage            | 0%
+Console for ObelISK	                            | ----- 50%

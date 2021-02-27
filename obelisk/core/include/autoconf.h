@@ -1,0 +1,80 @@
+/*
+ * Automatically generated C config: don't edit
+ * ObelISK
+ * Thu Jan 20 10:58:39 2011
+ */
+#define AUTOCONF_INCLUDED
+#define CONFIG_ARCH_BLACKFIN 1
+
+/*
+ * Architecture specific
+ */
+#define CONFIG_CPU_BF548 1
+#define CONFIG_CLKIN 25000000
+#define CONFIG_CCLK 500000000
+#define CONFIG_SCLK 125000000
+#define CONFIG_CTMR 1000
+#define CONFIG_RAM_SIZE 64
+#define CONFIG_BFIN_ICACHE 1
+#define CONFIG_BFIN_DCACHE 1
+#define CONFIG_BFIN_DCACHEB 1
+#define CONFIG_BFIN_WT 1
+#undef CONFIG_BFIN_WB
+
+/*
+ * Boot Loader
+ */
+#define CONFIG_FLASH_SIZE 8000000
+#define CONFIG_FLASH_START_ADDRESS 0x20000000
+#define CONFIG_APPLICATION_OFFSET 0x1000
+
+/*
+ * ObelISK core configuration
+ */
+
+/*
+ * Object Pools
+ */
+#define CONFIG_MAX_TASKS 3
+#define CONFIG_MAX_SEM 4
+#define CONFIG_MAX_EVENT 2
+#define CONFIG_MAX_MAILBOX 4
+#define CONFIG_MAX_MAILBOX_MSG 128
+#define CONFIG_MAX_FMPOOL 3
+#define CONFIG_MAX_VMPOOL 4
+#define CONFIG_SYSLOG_ACTIVE 1
+#define CONFIG_SYSLOG_SIZE 256
+#define CONFIG_KSTACK_SIZE 1024
+
+/*
+ * Device Drivers
+ */
+#define CONFIG_MAX_DEVICES 5
+#define CONFIG_MAX_DEVICE_REQUESTS 20
+
+/*
+ * lwIP Settings
+ */
+#define CONFIG_USING_LWIP 1
+#undef CONFIG_LWIP_MINIMAL_FEATURES
+#undef CONFIG_LWIP_SEQUENTIAL_API
+#define CONFIG_LWIP_SOCKET_API 1
+#define CONFIG_ETHIF_PRIO 5
+
+/*
+ * Configure Network
+ */
+#undef CONFIG_USE_DHCP
+#define CONFIG_IP_ADDRESS "192.168.1.1"
+#define CONFIG_NETMASK "255.255.255.0"
+#define CONFIG_GATEWAY "192.168.1.0"
+#define CONFIG_MAC_ADDRESS "EE:FF:C0:A8:01:01"
+#undef CONFIG_ISFLASH
+
+/*
+ * Integrated Camera
+ */
+#define CONFIG_OV7660 1
+#define CONFIG_OV7660_CCIR656_VGA_YUV_15FPS 1
+#undef CONFIG_OV7660_CCIR656_QVGA_YUV_15FPS
+#undef CONFIG_BFCAN

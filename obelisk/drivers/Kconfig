@@ -1,0 +1,31 @@
+
+config MAX_DEVICES
+	int "Device Pool size"
+	default 5
+	help
+		Maximum number of devices that can be opened at once
+config MAX_DEVICE_REQUESTS
+	int "Device Request Pool size"
+	default 20
+	help
+		Each read and write to a device generates a request. Set here the maximum number of requests on the system
+		
+menu "lwIP Settings"
+source "drivers/lwip/Kconfig"
+endmenu
+
+config ISFLASH
+	bool "Intel Strata Flash Driver"
+	default n
+	help
+		Compile Intel Strata Flash Driver
+
+menu "Integrated Camera"
+source "drivers/camera/Kconfig"
+endmenu
+	
+config BFCAN
+	bool "Blackfin CAN Driver"
+	default n
+	help
+		Compile Blackfin CAN driver
